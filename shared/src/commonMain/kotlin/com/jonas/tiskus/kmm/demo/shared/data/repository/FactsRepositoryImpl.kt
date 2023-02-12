@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 
 class FactsRepositoryImpl(
-    private val dictionaryApi: CatsApi
+    private val catsApi: CatsApi
 ): FactsRepository {
     override suspend fun getFacts() = flow<NetworkResult<List<Fact>>> {
-            val definitions = dictionaryApi.getFacts().map { Fact(it.text ?: "") }
-            emit(NetworkResult.Success(definitions))
+            val facts = catsApi.getFacts().map { Fact(it.text ?: "") }
+            emit(NetworkResult.Success(facts))
         }.onStart {
             emit(NetworkResult.Loading)
         }.catch {
