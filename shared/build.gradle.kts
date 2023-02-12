@@ -32,6 +32,7 @@ kotlin {
         val serializationVersion = "1.5.0-RC"
         val coroutinesVersion = "1.6.4"
         val lifecycleVersion = "2.5.1"
+        val diVersion = "7.18.0"
 
         val commonMain by getting {
             dependencies {
@@ -41,9 +42,10 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation("org.kodein.di:kodein-di:$diVersion")
 
                 implementation(kotlin("stdlib-common"))
-                implementation("co.touchlab:kermit:1.2.2")
+
             }
         }
         val commonTest by getting {

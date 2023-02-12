@@ -2,18 +2,19 @@ package com.jonas.tiskus.kmm.demo.shared.presentation
 
 import com.jonas.tiskus.kmm.demo.shared.asCommonFlow
 import com.jonas.tiskus.kmm.demo.shared.data.NetworkResult
-import com.jonas.tiskus.kmm.demo.shared.data.remote.CatsApiImpl
-import com.jonas.tiskus.kmm.demo.shared.data.repository.FactsRepositoryImpl
+import com.jonas.tiskus.kmm.demo.shared.di.di
 import com.jonas.tiskus.kmm.demo.shared.domain.model.Fact
+import com.jonas.tiskus.kmm.demo.shared.domain.repository.FactsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import org.kodein.di.instance
 
 class FactsViewModel: BaseViewModel() {
 
+    private val repository: FactsRepository by di.instance()
+
     private val _state = MutableStateFlow(FactsUiState(isLoading = true))
     val state = _state.asCommonFlow()
-
-    private val repository = FactsRepositoryImpl(CatsApiImpl())
 
     init {
         fetchFacts()
