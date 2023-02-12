@@ -3,6 +3,15 @@ Kotlin multiplatform shared code for iOS and Android which shares data, domain a
 
 This shared code example fetches https://cat-fact.herokuapp.com/facts endpoint for list of facts about cats and exposes a state required for consumer to display data.
 
+# Cat facts screen state
+```kotlin
+data class FactsUiState(
+    val isLoading: Boolean = false,
+    val facts: List<Fact> = emptyList(),
+    val error: Throwable? = null
+)
+```
+
 Consumers needs to initialize `Shared` module in application entry point by setting current runtime environment like so:
 
 # Android example:
